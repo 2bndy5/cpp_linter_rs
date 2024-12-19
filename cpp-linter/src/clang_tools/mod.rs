@@ -225,6 +225,7 @@ pub async fn capture_clang_tools_output(
 }
 
 /// A struct to describe a single suggestion in a pull_request review.
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Suggestion {
     /// The file's line number in the diff that begins the suggestion.
     pub line_start: u32,
@@ -253,6 +254,8 @@ pub struct ReviewComments {
     /// This includes changes from both clang-tidy and clang-format
     /// (assembled in that order).
     pub full_patch: [String; 2],
+    /// The number of old review suggestions reused instead of posting anew.
+    pub tool_reused: [u32; 2],
 }
 
 impl ReviewComments {
@@ -288,7 +291,7 @@ impl ReviewComments {
             if total != tool_total {
                 body.push_str(
                     format!(
-                        "\nOnly {total} out of {tool_total} {tool_name} concerns fit within this pull request's diff.\n",
+                        "\nOnly {total} out of {tool_total} _new_ {tool_name} concerns fit within this pull request's diff.\n",
                     )
                     .as_str(),
                 );
@@ -326,6 +329,47 @@ impl ReviewComments {
             }
         }
         false
+    }
+
+    /// Remove any reused ``Suggestion`` from the internal list and update counts
+    pub fn remove_reused_suggestions(&mut self, existing_review_comments: Vec<Suggestion>) {
+        if existing_review_comments.is_empty() {
+            return;
+        }
+        let mut clang_tidy_comments = 0;
+        let mut clang_format_comments = 0;
+        self.comments = self
+            .comments
+            .iter()
+            .filter(|s| {
+                if !existing_review_comments.contains(s) {
+                    clang_tidy_comments += s
+                        .suggestion
+                        .matches("### clang-tidy")
+                        .collect::<Vec<&str>>()
+                        .len() as u32;
+                    clang_format_comments += s
+                        .suggestion
+                        .matches("### clang-format")
+                        .collect::<Vec<&str>>()
+                        .len() as u32;
+                    return true;
+                }
+                false
+            })
+            .map(|s| s.to_owned())
+            .collect();
+        for (index, total_reused) in [clang_format_comments, clang_tidy_comments]
+            .iter_mut()
+            .enumerate()
+        {
+            if let Some(tool_total) = self.tool_total[index].as_mut() {
+                if *total_reused > 0 {
+                    self.tool_reused[index] = *tool_total - *total_reused;
+                    *tool_total = *total_reused;
+                }
+            }
+        }
     }
 }
 

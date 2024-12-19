@@ -68,6 +68,7 @@ pub struct Cli {
     pub tidy_review: bool,
     pub format_review: bool,
     pub passive_reviews: bool,
+    pub delete_review_comments: bool,
 }
 
 impl From<&ArgMatches> for Cli {
@@ -133,6 +134,7 @@ impl From<&ArgMatches> for Cli {
             tidy_review: args.get_flag("tidy-review"),
             format_review: args.get_flag("format-review"),
             passive_reviews: args.get_flag("passive-reviews"),
+            delete_review_comments: args.get_flag("delete-review-comments"),
         }
     }
 }
@@ -224,6 +226,7 @@ pub struct FeedbackInput {
     pub tidy_review: bool,
     pub format_review: bool,
     pub passive_reviews: bool,
+    pub delete_review_comments: bool,
 }
 
 impl From<&Cli> for FeedbackInput {
@@ -238,6 +241,7 @@ impl From<&Cli> for FeedbackInput {
             tidy_review: args.tidy_review,
             format_review: args.format_review,
             passive_reviews: args.passive_reviews,
+            delete_review_comments: args.delete_review_comments,
         }
     }
 }
@@ -254,6 +258,7 @@ impl Default for FeedbackInput {
             tidy_review: false,
             format_review: false,
             passive_reviews: false,
+            delete_review_comments: false,
         }
     }
 }

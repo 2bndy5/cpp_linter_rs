@@ -325,6 +325,19 @@ approving or requesting changes.\n\n",
             ),
         )
         .arg(
+            Arg::new("delete-review-comments")
+                .long("delete-review-comments")
+                .short('E')
+                .value_parser(BoolishValueParser::new())
+                .default_value("true")
+                .help(
+                    "Set to `true` to delete outdated/resolved
+suggestions in generated Pull Request reviews.
+
+Enabling this may not be desirable for various reasons\n\n",
+            ),
+        )
+        .arg(
             Arg::new("files")
                 .action(ArgAction::Append)
                 .help(
@@ -360,6 +373,7 @@ Further filtering can still be applied (see [Source options](#source-options))."
                     "tidy-review",
                     "format-review",
                     "passive-reviews",
+                    "delete-review-comments",
                 ])
                 .multiple(true)
                 .required(false),
