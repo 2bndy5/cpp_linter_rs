@@ -78,6 +78,10 @@ pub struct ReviewComment {
     pub body: Option<String>,
     /// The review's ID.
     pub id: i64,
+    /// The review's node ID.
+    ///
+    /// This is really only useful for GraphQL requests.
+    pub node_id: String,
     /// The state of the review in question.
     ///
     /// This could be "PENDING", "DISMISSED", "APPROVED", or "COMMENT".
