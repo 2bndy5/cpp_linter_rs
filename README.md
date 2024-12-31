@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable MD041 MD033 -->
 
 [file-annotations]: https://cpp-linter.github.io/cpp-linter-rs/cli#-a-file-annotations
 [thread-comments]: https://cpp-linter.github.io/cpp-linter-rs/cli#-g-thread-comments
@@ -6,14 +6,6 @@
 [tidy-review]: https://cpp-linter.github.io/cpp-linter-rs/cli#-d-tidy-review
 [format-review]: https://cpp-linter.github.io/cpp-linter-rs/cli#-m-format-review
 [other-licenses]: https://cpp-linter.github.io/cpp-linter-rs/other-licenses
-
-[format-annotations-preview]: docs/docs/images/annotations-clang-format.png
-[tidy-annotations-preview]: docs/docs/images/annotations-clang-tidy.png
-[step-summary-preview]: docs/docs/images/step-summary.png
-[thread-comment-preview]: docs/docs/images/comment.png
-[tidy-review-preview]: docs/docs/images/tidy-review.png
-[format-review-preview]: docs/docs/images/format-review.png
-[format-suggestion-preview]: docs/docs/images/format-suggestion.png
 
 [cli-doc]: https://cpp-linter.github.io/cpp-linter-rs/cli
 
@@ -124,6 +116,7 @@ For usage in a CI workflow, see
 For the description of supported Command Line Interface options, see
 [the CLI documentation][cli-doc].
 
+<!-- stop -->
 ## Example
 
 ### Annotations
@@ -132,40 +125,69 @@ Using [`--file-annotations`][file-annotations]:
 
 #### clang-format annotations
 
-![clang-format annotations][format-annotations-preview]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/format-annotation-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/format-annotation-light.png">
+  <img alt="format-annotation-preview." src="docs/docs/images/format-annotation-light.png">
+</picture>
 
 #### clang-tidy annotations
 
-![clang-tidy annotations][tidy-annotations-preview]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/tidy-annotation-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/tidy-annotation-light.png">
+  <img alt="tidy-annotation-preview." src="docs/docs/images/tidy-annotation-light.png">
+</picture>
 
 ### Thread Comment
 
 Using [`--thread-comments`][thread-comments]:
 
-![sample thread-comment][thread-comment-preview]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/thread-comment-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/thread-comment-light.png">
+  <img alt="thread-comment-preview." src="docs/docs/images/thread-comment-light.png">
+</picture>
 
 ### Step Summary
 
 Using [`--step-summary`][step-summary]:
 
-![step summary][step-summary-preview]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/step-summary-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/step-summary-light.png">
+  <img alt="step-summary-preview." src="docs/docs/images/step-summary-light.png">
+</picture>
 
 ### Pull Request Review
 
-#### Only clang-tidy
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/review-summary-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/review-summary-light.png">
+  <img alt="review-summary-preview." src="docs/docs/images/review-summary-light.png">
+</picture>
+
+#### clang-tidy suggestion
 
 Using [`--tidy-review`][tidy-review]:
 
-![sample tidy-review][tidy-review-preview]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/tidy-review-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/tidy-review-light.png">
+  <img alt="tidy-review-preview." src="docs/docs/images/tidy-review-light.png">
+</picture>
 
-#### Only clang-format
+#### clang-format suggestion
 
 Using [`--format-review`][format-review]:
 
-![sample format-review][format-review-preview]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/docs/images/format-review-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/docs/images/format-review-light.png">
+  <img alt="format-review-preview." src="docs/docs/images/format-review-light.png">
+</picture>
 
-![sample format-suggestion][format-suggestion-preview]
-
+<!-- resume -->
 ## Have question or feedback?
 
 To provide feedback (requesting a feature or reporting a bug) please post to

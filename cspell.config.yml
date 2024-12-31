@@ -50,6 +50,7 @@ words:
   - reqwest
   - revparse
   - serde
+  - srcset
   - superfences
   - tada
   - tasklist
