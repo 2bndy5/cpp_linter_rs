@@ -20,10 +20,10 @@ bench = false
 napi = { version = "2.16.13", default-features = false, features = ["napi4", "async"] }
 napi-derive = "2.16.13"
 cpp-linter = { path = "../../cpp-linter" }
-anyhow = "1.0.94"
+anyhow = "1.0.95"
 
 [features]
 openssl-vendored = ["cpp-linter/openssl-vendored"]
 
 [build-dependencies]
-napi-build = "2.0.1"
+napi-build = "2.1.4"
